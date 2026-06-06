@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWA TOP FRESH - منتجات طازجة</title>
+    <style>
+        body { font-family: Arial; text-align: center; background: #f0f8ff; }
+        .product { border: 1px solid #ccc; margin: 10px; padding: 10px; display: inline-block; }
+        img { width: 150px; height: 150px; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    </style>
+</head>
+<body>
+    <h1>🚀 AWA TOP FRESH</h1>
+    <h2>أفضل المنتجات الطازجة لمطاعمك</h2>
+    <div class="product">
+        <img src="https://via.placeholder.com/150?text=بطاطا+مقطعة" alt="بطاطا">
+        <h3>بطاطا مقطعة طازجة</h3>
+        <p>سعر: 15 ريال / كجم</p>
+        <button onclick="addToCart(this)">أضف إلى السلة</button>
+    </div>
+    <div class="product">
+        <img src="https://via.placeholder.com/150?text=لبن+طازج" alt="لبن">
+        <h3>لبن طازج</h3>
+        <p>سعر: 8 ريال / لتر</p>
+        <button onclick="addToCart(this)">أضف إلى السلة</button>
+    </div>
+    <script>
+        function addToCart(btn) {
+            alert('تمت إضافة المنتج إلى السلة!');
+            btn.style.background = '#28a745';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "awa-top-fresh",
+  "version": "1.0.0",
+  "description": "تطبيق بيع منتجات مطاعم طازجة",
+  "scripts": {
+    "start": "echo 'Open index.html in browser'"
+  }
+}
