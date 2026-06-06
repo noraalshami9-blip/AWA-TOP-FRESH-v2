@@ -4,33 +4,238 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AWA TOP FRESH - منتجات طازجة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { font-family: Arial; text-align: center; background: #f0f8ff; }
-        .product { border: 1px solid #ccc; margin: 10px; padding: 10px; display: inline-block; }
-        img { width: 150px; height: 150px; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+        body { font-family: 'Cairo', sans-serif; }
+        .product-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
     </style>
 </head>
-<body>
-    <h1>🚀 AWA TOP FRESH</h1>
-    <h2>أفضل المنتجات الطازجة لمطاعمك</h2>
-    <div class="product">
-        <img src="https://via.placeholder.com/150?text=بطاطا+مقطعة" alt="بطاطا">
-        <h3>بطاطا مقطعة طازجة</h3>
-        <p>سعر: 15 ريال / كجم</p>
-        <button onclick="addToCart(this)">أضف إلى السلة</button>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-green-700 text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-leaf text-3xl"></i>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight">AWA TOP FRESH</h1>
+                    <p class="text-xs opacity-75 -mt-1">منتجات المطاعم الطازجة</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-8 text-lg">
+                <a href="#home" class="hover:text-green-200 transition-colors">الرئيسية</a>
+                <a href="#products" class="hover:text-green-200 transition-colors">المنتجات</a>
+                <a href="#cart" class="hover:text-green-200 transition-colors relative">
+                    السلة
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-gradient-to-br from-green-600 to-emerald-700 text-white py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <h2 class="text-5xl md:text-6xl font-bold leading-tight">أفضل المنتجات الطازجة<br>لبطاطسك ولبانك المفضل</h2>
+                <p class="text-xl opacity-90">توصيل سريع • جودة عالية • أسعار منافسة</p>
+                <button onclick="scrollToProducts()" class="bg-white text-green-700 px-10 py-4 rounded-2xl font-semibold text-lg hover:bg-green-100 transition-all flex items-center gap-3 group">
+                    تسوق الآن
+                    <i class="fas fa-arrow-left group-active:translate-x-1 transition"></i>
+                </button>
+            </div>
+            <div class="relative">
+                <img src="https://picsum.photos/id/1080/600/500" alt="بطاطا طازجة" class="rounded-3xl shadow-2xl animate-float w-full">
+                <div class="absolute -bottom-6 -left-6 bg-white text-green-700 px-6 py-3 rounded-2xl shadow-xl flex items-center gap-3">
+                    <i class="fas fa-star text-2xl"></i>
+                    <div>
+                        <div class="font-bold">4.9</div>
+                        <div class="text-sm">تقييم العملاء</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="flex justify-between items-end mb-10">
+            <div>
+                <span class="text-green-600 font-medium">⭐ منتجاتنا</span>
+                <h2 class="text-4xl font-bold mt-2">اختر منتجاتك المفضلة</h2>
+            </div>
+            <input type="text" id="search" placeholder="ابحث عن منتج..." class="border border-gray-300 rounded-full px-6 py-3 w-80 focus:outline-none focus:border-green-500" onkeyup="filterProducts()">
+        </div>
+
+        <div id="products-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- Products populated by JS -->
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full md:w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col">
+        <div class="p-6 border-b flex items-center justify-between">
+            <h3 class="text-2xl font-bold">سلة التسوق</h3>
+            <button onclick="toggleCart()" class="text-3xl">×</button>
+        </div>
+        <div id="cart-items" class="flex-1 p-6 overflow-auto"></div>
+        <div class="p-6 border-t">
+            <div class="flex justify-between text-xl mb-6">
+                <span>الإجمالي</span>
+                <span id="cart-total" class="font-bold">0 ر.س</span>
+            </div>
+            <button onclick="checkout()" class="w-full bg-green-700 text-white py-5 rounded-2xl text-lg font-semibold hover:bg-green-800 transition">إتمام الطلب</button>
+        </div>
     </div>
-    <div class="product">
-        <img src="https://via.placeholder.com/150?text=لبن+طازج" alt="لبن">
-        <h3>لبن طازج</h3>
-        <p>سعر: 8 ريال / لتر</p>
-        <button onclick="addToCart(this)">أضف إلى السلة</button>
-    </div>
+
     <script>
-        function addToCart(btn) {
-            alert('تمت إضافة المنتج إلى السلة!');
-            btn.style.background = '#28a745';
+        // Products Data
+        const products = [
+            { id: 1, name: 'بطاطا مقطعة طازجة', price: 25, img: 'https://picsum.photos/id/292/300/300', category: 'خضروات' },
+            { id: 2, name: 'لبن طازج كامل الدسم', price: 18, img: 'https://picsum.photos/id/201/300/300', category: 'ألبان' },
+            { id: 3, name: 'بطاطا مقلية جاهزة', price: 35, img: 'https://picsum.photos/id/431/300/300', category: 'وجبات' },
+            { id: 4, name: 'لبن بودرة', price: 45, img: 'https://picsum.photos/id/870/300/300', category: 'ألبان' },
+            { id: 5, name: 'خضروات مشكلة طازجة', price: 30, img: 'https://picsum.photos/id/1080/300/300', category: 'خضروات' },
+        ];
+
+        let cart = [];
+
+        function renderProducts(filteredProducts) {
+            const container = document.getElementById('products-grid');
+            container.innerHTML = '';
+            filteredProducts.forEach(product => {
+                const card = `
+                    <div class="product-card bg-white rounded-3xl overflow-hidden shadow-md">
+                        <div class="relative">
+                            <img src="${product.img}" class="w-full h-56 object-cover">
+                            <div class="absolute top-4 right-4 bg-white px-3 py-1 rounded-2xl text-sm font-medium shadow">${product.category}</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-semibold text-lg mb-2">${product.name}</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-green-700">${product.price} ر.س</span>
+                                <button onclick="addToCart(${product.id})" class="bg-green-700 text-white px-6 py-3 rounded-2xl hover:bg-green-800 transition flex items-center gap-2">
+                                    <i class="fas fa-plus"></i> أضف
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
         }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity = (existing.quantity || 1) + 1;
+            } else {
+                cart.push({...product, quantity: 1});
+            }
+            updateCartCount();
+            showToast(`${product.name} تمت إضافته`);
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('translate-x-full');
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            let html = '';
+            let total = 0;
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * (item.quantity || 1);
+                total += itemTotal;
+                html += `
+                    <div class="flex gap-4 mb-6">
+                        <img src="${item.img}" class="w-20 h-20 object-cover rounded-2xl">
+                        <div class="flex-1">
+                            <div class="font-medium">${item.name}</div>
+                            <div class="text-green-600">${item.price} ر.س × ${item.quantity || 1}</div>
+                            <div class="mt-2 flex gap-3">
+                                <button onclick="changeQuantity(${index}, -1)" class="w-8 h-8 border rounded-xl">–</button>
+                                <span class="py-1">${item.quantity || 1}</span>
+                                <button onclick="changeQuantity(${index}, 1)" class="w-8 h-8 border rounded-xl">+</button>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold">${itemTotal} ر.س</div>
+                            <button onclick="removeFromCart(${index})" class="text-red-500 text-sm mt-2">إزالة</button>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html || '<p class="text-center text-gray-400 py-12">السلة فارغة</p>';
+            document.getElementById('cart-total').textContent = `${total} ر.س`;
+        }
+
+        function changeQuantity(index, change) {
+            cart[index].quantity = Math.max(1, (cart[index].quantity || 1) + change);
+            renderCart();
+            updateCartCount();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            renderCart();
+            updateCartCount();
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            alert('تم إتمام الطلب بنجاح! 🎉 سيتم التواصل معك قريباً');
+            cart = [];
+            updateCartCount();
+            toggleCart();
+        }
+
+        function filterProducts() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(searchTerm)
+            );
+            renderProducts(filtered);
+        }
+
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-green-700 text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3';
+            toast.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        // Initialize
+        window.onload = () => {
+            renderProducts(products);
+        };
     </script>
 </body>
 </html>
