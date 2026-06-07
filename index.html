@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f59e0b">
     <title>TOP FRESH | طعم الطبيعة</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="TOP FRESH">
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/192x192/amber/fff?text=TF">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&display=swap');
         body { font-family: 'Cairo', sans-serif; }
@@ -35,7 +45,6 @@
             transform: translateY(-20px);
             box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
         }
-        /* زر واتساب عائم */
         .whatsapp-float {
             position: fixed;
             bottom: 25px;
@@ -61,6 +70,7 @@
 </head>
 <body class="bg-gray-50">
 
+    <!-- باقي المحتوى كما هو (الهيرو + النبذة + المنتجات + التواصل) -->
     <!-- الهيرو -->
     <header class="hero h-screen flex items-center text-white">
         <div class="max-w-5xl mx-auto text-center px-6">
@@ -82,13 +92,8 @@
                 <h2 class="section-title font-bold text-gray-800 mx-auto">نبذة عن توب فريش</h2>
             </div>
             <div class="max-w-3xl mx-auto text-center text-lg leading-relaxed text-gray-600">
-                <p>
-                    شركة TOP FRESH رائدة في مجال إنتاج وتوزيع البطاطا الطبيعية بجميع أشكالها. 
-                    نعتمد على أفضل المزارع المحلية وأحدث خطوط الإنتاج لضمان جودة استثنائية ومذاق لا يُنسى.
-                </p>
-                <p class="mt-6">
-                    نؤمن أن الطعم الطبيعي هو سر النجاح، لذلك نبتعد تماماً عن المواد الحافظة والإضافات الصناعية.
-                </p>
+                <p>شركة TOP FRESH رائدة في مجال إنتاج وتوزيع البطاطا الطبيعية بجميع أشكالها.</p>
+                <p class="mt-6">نعتمد على أفضل المزارع وأحدث خطوط الإنتاج لضمان جودة استثنائية.</p>
             </div>
         </div>
     </section>
@@ -97,35 +102,30 @@
     <section class="py-20 bg-gradient-to-b from-amber-50 to-white">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">منتجاتنا</h2>
-            
             <div class="grid lg:grid-cols-3 gap-10">
-
                 <div class="product-card bg-white rounded-3xl overflow-hidden border border-amber-100">
-                    <div class="h-80 bg-cover bg-center relative" 
-                         style="background-image: url('https://source.unsplash.com/800x600/?potato-chips,crisps')">
+                    <div class="h-80 bg-cover bg-center relative" style="background-image: url('https://source.unsplash.com/800x600/?potato-chips,crisps')">
                         <div class="absolute top-4 right-4 bg-amber-600 text-white text-sm px-4 py-1 rounded-full">الأكثر مبيعاً</div>
                     </div>
                     <div class="p-8">
                         <h3 class="text-2xl font-bold mb-3">البطاطا الطبيعية المالحة</h3>
-                        <p class="text-gray-600">رقائق طازجة مقرمشة بطعم مالح طبيعي، مثالية للتجزئة والتسويق.</p>
+                        <p class="text-gray-600">رقائق طازجة مقرمشة بطعم مالح طبيعي.</p>
                     </div>
                 </div>
 
                 <div class="product-card bg-white rounded-3xl overflow-hidden border border-amber-100">
-                    <div class="h-80 bg-cover bg-center" 
-                         style="background-image: url('https://source.unsplash.com/800x600/?raw-potatoes,bulk-potatoes')"></div>
+                    <div class="h-80 bg-cover bg-center" style="background-image: url('https://source.unsplash.com/800x600/?raw-potatoes,bulk-potatoes')"></div>
                     <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3">البطاطا الخام لمعامل الشيبس</h3>
-                        <p class="text-gray-600">توريد بطاطا خام عالية الجودة بمواصفات صناعية دقيقة.</p>
+                        <h3 class="text-2xl font-bold mb-3">البطاطا الخام</h3>
+                        <p class="text-gray-600">توريد بطاطا خام عالية الجودة لمعامل الشيبس.</p>
                     </div>
                 </div>
 
                 <div class="product-card bg-white rounded-3xl overflow-hidden border border-amber-100">
-                    <div class="h-80 bg-cover bg-center" 
-                         style="background-image: url('https://source.unsplash.com/800x600/?french-fries,cut-potatoes')"></div>
+                    <div class="h-80 bg-cover bg-center" style="background-image: url('https://source.unsplash.com/800x600/?french-fries,cut-potatoes')"></div>
                     <div class="p-8">
                         <h3 class="text-2xl font-bold mb-3">البطاطا المقطعة</h3>
-                        <p class="text-gray-600">بطاطا مقطعة جاهزة للمطاعم والفنادق. طازجة ومبردة.</p>
+                        <p class="text-gray-600">مقطعة جاهزة للمطاعم والفنادق.</p>
                     </div>
                 </div>
             </div>
@@ -138,44 +138,44 @@
             <h2 class="text-5xl font-bold mb-6">تواصل معنا</h2>
             <p class="text-amber-400 text-xl mb-12">سنرد عليك في أقصر وقت ممكن</p>
 
-            <div class="grid md:grid-cols-3 gap-12 mb-16">
+            <div class="grid md:grid-cols-2 gap-12 mb-16 max-w-md mx-auto">
                 <div>
                     <i class="fa-solid fa-phone text-4xl text-amber-500 mb-4"></i>
-                    <p class="text-2xl">053 781 07464</p>
+                    <p class="text-2xl">+90 537 810 7464</p>
                 </div>
                 <div>
                     <i class="fa-solid fa-envelope text-4xl text-amber-500 mb-4"></i>
                     <p class="text-2xl">info@topfresh.sy</p>
                 </div>
-                <div>
-                    <i class="fa-solid fa-location-dot text-4xl text-amber-500 mb-4"></i>
-                    <p class="text-2xl">سوريا - حلب</p>
-                </div>
             </div>
 
-            <!-- أيقونات التواصل الاجتماعي -->
-            <div class="flex justify-center gap-8 text-5xl">
+            <div class="flex justify-center gap-10 text-5xl">
                 <a href="#" class="hover:text-amber-500 transition-colors"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="hover:text-amber-500 transition-colors"><i class="fab fa-facebook"></i></a>
-                <a href="https://wa.me/9635378107464" target="_blank" class="hover:text-amber-500 transition-colors">
+                <a href="https://wa.me/905378107464" target="_blank" class="hover:text-amber-500 transition-colors" title="+90 537 810 7464">
                     <i class="fab fa-whatsapp"></i>
                 </a>
                 <a href="#" class="hover:text-amber-500 transition-colors"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" class="hover:text-amber-500 transition-colors"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="hover:text-amber-500 transition-colors"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </section>
 
     <!-- زر واتساب عائم -->
-    <a href="https://wa.me/9635378107464" target="_blank" class="whatsapp-float">
+    <a href="https://wa.me/905378107464" target="_blank" class="whatsapp-float" title="+90 537 810 7464">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <footer class="bg-black text-gray-400 py-10 text-center">
         <p class="text-lg">© 2026 TOP FRESH - جميع الحقوق محفوظة</p>
-        <p class="mt-2">طازجة • طبيعية • موثوقة</p>
     </footer>
 
+    <!-- Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker Registered'))
+                .catch(err => console.log('Service Worker Error:', err));
+        }
+    </script>
 </body>
 </html>
