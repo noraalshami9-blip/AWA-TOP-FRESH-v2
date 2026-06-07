@@ -1,184 +1,28 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f59e0b">
-    <title>TOP FRESH | طعم الطبيعة</title>
-    
-    <!-- Favicon & Icons -->
-    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23f59e0b' width='192' height='192' rx='48'/><text x='96' y='120' font-size='80' font-weight='bold' fill='%231f5233' text-anchor='middle' font-family='Arial'>TF</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23f59e0b' width='192' height='192' rx='48'/><text x='96' y='120' font-size='80' font-weight='bold' fill='%231f5233' text-anchor='middle' font-family='Arial'>TF</text></svg>">
-
-    <!-- PWA Meta Tags -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="TOP FRESH">
-
+    <title>AWA TOP FRESH</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
         body { font-family: 'Cairo', sans-serif; }
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.7)), 
-                        url('https://source.unsplash.com/2000x1300/?potato-chips,crisps') center/cover no-repeat fixed;
+        .product-card { transition: all 0.3s ease; }
+        .product-card:hover { transform: scale(1.05) translateY(-10px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
-        .section-title {
-            font-size: 2.8rem;
-            position: relative;
-        }
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            right: 50%;
-            transform: translateX(50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, #f59e0b, #fcd34d);
-            border-radius: 9999px;
-        }
-        .product-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .product-card:hover {
-            transform: translateY(-20px);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-        }
-        .whatsapp-float {
-            position: fixed;
-            bottom: 25px;
-            left: 25px;
-            background: #25D366;
-            color: white;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 35px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            transition: all 0.3s;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-        }
-    </style>
+    </style>2xl texttext
+
 </head>
-<body class="bg-gray-50">
-
-    <!-- باقي المحتوى كما هو (الهيرو + النبذة + المنتجات + التواصل) -->
-    <!-- الهيرو -->
-    <header class="hero h-screen flex items-center text-white">
-        <div class="max-w-5xl mx-auto text-center px-6">
-            <div class="inline-block bg-amber-600 text-sm tracking-widest px-6 py-2 rounded-full mb-6">منذ 2018</div>
-            <h1 class="text-6xl md:text-7xl font-black mb-4">TOP FRESH</h1>
-            <p class="text-3xl md:text-4xl mb-6">بطاطا طبيعية 100% • طعم أصيل</p>
-            <a href="#contact" 
-               class="inline-flex items-center gap-3 bg-white text-gray-900 hover:bg-amber-500 hover:text-white transition-all px-10 py-4 rounded-3xl text-xl font-semibold">
-                ابدأ التواصل
-                <i class="fas fa-arrow-down"></i>
-            </a>
-        </div>
-    </header>
-
-    <!-- نبذة عن الشركة -->
-    <section class="py-24 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="section-title font-bold text-gray-800 mx-auto">نبذة عن توب فريش</h2>
-            </div>
-            <div class="max-w-3xl mx-auto text-center text-lg leading-relaxed text-gray-600">
-                <p>شركة TOP FRESH رائدة في مجال إنتاج وتوزيع البطاطا الطبيعية بجميع أشكالها.</p>
-                <p class="mt-6">نعتمد على أفضل المزارع وأحدث خطوط الإنتاج لضمان جودة استثنائية.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- المنتجات -->
-    <section class="py-20 bg-gradient-to-b from-amber-50 to-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">منتجاتنا</h2>
-            <div class="grid lg:grid-cols-3 gap-10">
-                <div class="product-card bg-white rounded-3xl overflow-hidden border border-amber-100">
-                    <div class="h-80 bg-cover bg-center relative" style="background-image: url('https://source.unsplash.com/800x600/?potato-chips,crisps')">
-                        <div class="absolute top-4 right-4 bg-amber-600 text-white text-sm px-4 py-1 rounded-full">الأكثر مبيعاً</div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3">البطاطا الطبيعية المالحة</h3>
-                        <p class="text-gray-600">رقائق طازجة مقرمشة بطعم مالح طبيعي.</p>
-                    </div>
-                </div>
-
-                <div class="product-card bg-white rounded-3xl overflow-hidden border border-amber-100">
-                    <div class="h-80 bg-cover bg-center" style="background-image: url('https://source.unsplash.com/800x600/?raw-potatoes,bulk-potatoes')"></div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3">البطاطا الخام</h3>
-                        <p class="text-gray-600">توريد بطاطا خام عالية الجودة لمعامل الشيبس.</p>
-                    </div>
-                </div>
-
-                <div class="product-card bg-white rounded-3xl overflow-hidden border border-amber-100">
-                    <div class="h-80 bg-cover bg-center" style="background-image: url('https://source.unsplash.com/800x600/?french-fries,cut-potatoes')"></div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3">البطاطا المقطعة</h3>
-                        <p class="text-gray-600">مقطعة جاهزة للمطاعم والفنادق.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- تواصل معنا -->
-    <section id="contact" class="py-24 bg-gray-900 text-white">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <h2 class="text-5xl font-bold mb-6">تواصل معنا</h2>
-            <p class="text-amber-400 text-xl mb-12">سنرد عليك في أقصر وقت ممكن</p>
-
-            <div class="grid md:grid-cols-2 gap-12 mb-16 max-w-md mx-auto">
-                <div>
-                    <i class="fa-solid fa-phone text-4xl text-amber-500 mb-4"></i>
-                    <p class="text-2xl">+90 537 810 7464</p>
-                </div>
-                <div>
-                    <i class="fa-solid fa-envelope text-4xl text-amber-500 mb-4"></i>
-                    <p class="text-2xl">info@topfresh.sy</p>
-                </div>
-            </div>
-
-            <div class="flex justify-center gap-10 text-5xl">
-                <a href="#" class="hover:text-amber-500 transition-colors"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="hover:text-amber-500 transition-colors"><i class="fab fa-facebook"></i></a>
-                <a href="https://wa.me/905378107464" target="_blank" class="hover:text-amber-500 transition-colors" title="+90 537 810 7464">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="#" class="hover:text-amber-500 transition-colors"><i class="fab fa-x-twitter"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- زر واتساب عائم -->
-    <a href="https://wa.me/905378107464" target="_blank" class="whatsapp-float" title="+90 537 810 7464">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <footer class="bg-black text-gray-400 py-10 text-center">
-        <p class="text-lg">© 2026 TOP FRESH - جميع الحقوق محفوظة</p>
-    </footer>
-
-    <!-- Service Worker -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(reg => console.log('Service Worker Registered'))
-                .catch(err => console.log('Service Worker Error:', err));
-        }
-    </script>
-</body>
-</html>
+<body class="bg-gradient-to-br from-green-50 to-emerald-100">
+    <!-- Hero Section with Logo -->
+    <div class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(at_center,#10b981_0%,transparent_70%)] opacity-20"></div>
+        <div class="text-center z-10 px-6">
+            <img src="https://i.imgur.com/YourLogoHere.png" alt="AWA TOP FRESH" class="mx-auto w-96 float-animation" id="main-logo">
+            <h1 class="text-7xl font-bold text-emerald-800 mt-8 tracking-widest">AWA TOP FRESH</h1>
+            <p class="
