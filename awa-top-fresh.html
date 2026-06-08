@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWA TOP FRESH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+    
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #0f2a0f, #3a2a1f);
+    }
+
+    .chips-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+      opacity: 0.85;
+    }
+
+    .chip {
+      position: absolute;
+      background: radial-gradient(circle, #fcd34d, #d97706);
+      border-radius: 60% 40% 70% 30%;
+      box-shadow: 0 10px 20px rgba(245, 158, 11, 0.5);
+      animation: fly linear infinite;
+    }
+
+    @keyframes fly {
+      0% { transform: translateY(110vh) rotate(0deg); opacity: 0.9; }
+      100% { transform: translateY(-120vh) rotate(1080deg); opacity: 0.3; }
+    }
+
+    .app-frame {
+      position: relative;
+      z-index: 2;
+      max-width: 420px;
+      margin: 15px auto;
+      background: #111827;
+      border-radius: 48px;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8);
+      height: 88vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background: linear-gradient(90deg, #f59e0b, #eab308);
+      color: #1f2937;
+      padding: 18px 20px;
+      font-weight: 900;
+      font-size: 26px;
+      box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);
+    }
+
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      background: rgba(17, 24, 39, 0.95);
+    }
+
+    .product-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .product-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 25px -5px rgb(234 179 8 / 0.3);
+    }
+
+    .order-btn {
+      transition: all 0.3s;
+    }
+    
+    .order-btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 10px 15px rgba(234, 179, 8, 0.4);
+    }
+
+    .bottom-nav {
+      background: #1f2937;
+      border-top: 1px solid #f59e0b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chips-bg" id="chips"></div>
+
+  <div class="app-frame">
+    <!-- Header -->
+    <div class="header flex items-center gap-3">
+      <span class="text-4xl">🥔</span>
+      <div>
+        <div class="text-2xl font-black tracking-tight">AWA TOP FRESH</div>
+        <div class="text-xs opacity-80 -mt-1">بطاطس طبيعية • جودة عالمية</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content" id="content"></div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav py-2 px-4">
+      <div class="flex justify-around text-center">
+        <button onclick="switchTab(0)" class="flex flex-col items-center text-amber-400 active-tab">
+          <span class="text-2xl">🏠</span>
+          <span class="text-xs font-bold">الرئيسية</span>
+        </button>
+        <button onclick="switchTab(1)" class="flex flex-col items-center text-gray-400 hover:text-amber-400">
+          <span class="text-2xl">🍟</span>
+          <span class="text-xs font-bold">المطاعم</span>
+        </button>
+        <button onclick="switchTab(2)" class="flex flex-col items-center text-gray-400 hover:text-amber-400">
+          <span class="text-2xl">🏭</span>
+          <span class="text-xs font-bold">التوريد</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function createChips() {
+      const bg = document.getElementById('chips');
+      for (let i = 0; i < 55; i++) {
+        const chip = document.createElement('div');
+        chip.className = 'chip';
+        chip.style.left = Math.random() * 100 + '%';
+        chip.style.width = (Math.random() * 55 + 35) + 'px';
+        chip.style.height = (Math.random() * 35 + 25) + 'px';
+        chip.style.animationDuration = (Math.random() * 11 + 7) + 's';
+        chip.style.animationDelay = '-' + (Math.random() * 18) + 's';
+        chip.style.opacity = Math.random() * 0.6 + 0.5;
+        bg.appendChild(chip);
+      }
+    }
+
+    function switchTab(tab) {
+      const content = document.getElementById('content');
+      
+      if (tab === 0) {
+        content.innerHTML = `
+          <div class="space-y-6">
+            <div class="text-center">
+              <h1 class="text-3xl font-black text-amber-400">مرحباً بك في AWA TOP FRESH</h1>
+              <p class="text-amber-200 mt-1">طازجة • سريعة • موثوقة</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div class="product-card bg-gradient-to-br from-amber-900 to-yellow-900 p-4 rounded-3xl text-center border border-amber-400/30">
+                <div class="text-5xl mb-3">🥔</div>
+                <h3 class="font-bold text-lg">بطاطس مالحة</h3>
+                <p class="text-sm text-amber-200">طازجة يومياً</p>
+                <button onclick="alert('تمت إضافة المنتج إلى السلة!')" class="order-btn mt-4 w-full bg-amber-400 hover:bg-yellow-300 text-gray-900 font-bold py-3 rounded-2xl">اطلب</button>
+              </div>
+              
+              <div class="product-card bg-gradient-to-br from-amber-900 to-yellow-900 p-4 rounded-3xl text-center border border-amber-400/30">
+                <div class="text-5xl mb-3">🍟</div>
+                <h3 class="font-bold text-lg">مقطعة جاهزة</h3>
+                <p class="text-sm text-amber-200">للمطاعم</p>
+                <button onclick="switchTab(1)" class="order-btn mt-4 w-full bg-amber-400 hover:bg-yellow-300 text-gray-900 font-bold py-3 rounded-2xl">تصفح</button>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (tab === 1) {
+        content.innerHTML = `
+          <div class="section bg-gradient-to-br from-amber-950 to-yellow-950 p-6 rounded-3xl border border-amber-400/30">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><span class="text-4xl">🍟</span> خدمة المطاعم والفنادق</h2>
+            <p class="text-amber-100 leading-relaxed">بطاطس مقطعة طازجة بأشكال متعددة وأحجام احترافية.</p>
+            <button onclick="window.open('https://wa.me/+905378107464?text=مرحبا%20AWA%20TOP%20FRESH%2C%20أريد%20طلب%20بطاطس%20مقطعة%20للمطعم', '_blank')" 
+                    class="order-btn mt-8 w-full bg-green-500 hover:bg-green-400 text-white font-bold text-lg py-5 rounded-3xl shadow-xl">
+              📲 اطلب الآن عبر واتساب
+            </button>
+          </div>
+        `;
+      } else {
+        content.innerHTML = `
+          <div class="section bg-gradient-to-br from-amber-950 to-yellow-950 p-6 rounded-3xl border border-amber-400/30">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><span class="text-4xl">🏭</span> التوريد الصناعي</h2>
+            <p class="text-amber-100 leading-relaxed">بطاطس خام عالية الجودة لمعامل الشيبس بكميات كبيرة.</p>
+            <button onclick="window.open('https://wa.me/+963995155627?text=مرحبا%20AWA%20TOP%20FRESH%2C%20أريد%20توريد%20بطاطس%20خام%20لمعمل%20الشيبس', '_blank')" 
+                    class="order-btn mt-8 w-full bg-green-500 hover:bg-green-400 text-white font-bold text-lg py-5 rounded-3xl shadow-xl">
+              📲 طلب توريد عبر واتساب
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    window.onload = () => {
+      createChips();
+      switchTab(0);
+    };
+  </script>
+</body>
+</html>
